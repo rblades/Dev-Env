@@ -73,6 +73,7 @@
 <p>Now change back to the main directory by running <code>cd ..</code>. Now let’s compile PocketSphinx. First <code>cd pocketsphinx-0.8</code>. Now run the same commands as above:<br>
 <code>./configure --enable-fixed</code>, <code>sudo make</code>, and then <code>sudo make install</code>.</p>
 <p>Sphinx will take a bit of time to compile. Be patient and watch ther terminal for any errors from the compiler.</p>
+<h2 id="run-ocr-convert-text-to-speech-and">Run OCR, Convert Text to Speech, and</h2>
 <h2 id="compare-text-files">Compare Text Files</h2>
 <p>We will be using a python script to compare our two text files. Open the Pi text editor and paste in the following code:</p>
 <pre><code>with open('ocr.txt', 'r') as file1:
@@ -87,7 +88,7 @@ with open('conversion.txt', 'w') as file_out:
 </code></pre>
 <p>This code will take our two text files <code>ocr.txt</code> and <code>speech.txt</code>, compare them line by line, and then write out the results in a text file called <code>conversion.txt</code>.</p>
 <p>Lastly, paste the following code into your python script in a new paragraph after <code>file_out.write(line)</code>:</p>
-<pre><code>Conditional breadboard
+<pre><code>#TODO: Insert Conditional breadboard
 </code></pre>
 <p>This code takes the results in <code>conversion.txt</code> and asks if <code>ocr.txt</code> and <code>speech.txt</code> are 70% or more similar, flash the green LED light on the breadboard. But if they are less than 70% similar, flash the red LED light on the breadboard. Save the file as <code>convert.py</code> in <strong>the same directory as your two text files.</strong></p>
 <p>In your terminal run <code>python convert.py</code>.</p>
