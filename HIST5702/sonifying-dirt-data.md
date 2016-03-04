@@ -86,7 +86,7 @@ with open('conversion.txt', 'w') as file_out:
         file_out.write(line)
 </code></pre>
 <p>This code will take our two text files <code>ocr.txt</code> and <code>speech.txt</code>, compare them line by line, and then write out the results in a text file called <code>conversion.txt</code>.</p>
-<p>Lastly, paste the following code into your python script:</p>
+<p>Lastly, paste the following code into your python script in a new paragraph after <code>file_out.write(line)</code>:</p>
 <pre><code>Conditional breadboard
 </code></pre>
 <p>This code takes the results in <code>conversion.txt</code> and asks if <code>ocr.txt</code> and <code>speech.txt</code> are 70% or more similar, flash the green LED light on the breadboard. But if they are less than 70% similar, flash the red LED light on the breadboard. Save the file as <code>convert.py</code> in <strong>the same directory as your two text files.</strong></p>
