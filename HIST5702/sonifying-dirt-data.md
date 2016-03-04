@@ -75,6 +75,7 @@
 <code>./configure --enable-fixed</code>, <code>sudo make</code>, and then <code>sudo make install</code>.</p>
 <p>Sphinx will take a bit of time to compile. Be patient and watch ther terminal for any errors from the compiler.</p>
 <h2 id="run-ocr-convert-text-to-speech----speech-to-text">Run OCR, Convert Text to Speech --&gt; Speech to Text</h2>
+<p>To begin,</p>
 <h2 id="compare-text-files">Compare Text Files</h2>
 <p>We will be using a python script to compare our two text files. Open the Pi text editor and paste in the following code:</p>
 <pre><code>with open('ocr.txt', 'r') as file1:
