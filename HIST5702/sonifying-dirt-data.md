@@ -14,7 +14,7 @@
 <li>Spare cardboard box, electrical and/or technical tape, exacto knife/box cutter</li>
 </ul>
 <h2 id="getting-started">Getting Started</h2>
-<p>Let’s start from scratch. If you already have your Pi running, or are using a preinstalled SD card, you can skip to the next section.</p>
+<p>Let’s start from scratch. If you already have your Pi running, or are using a preinstalled SD card, you can skip to the <a href="#the-screen-isnt-showing-your-pi-and-hdmi">next section</a>.</p>
 <p>For this tutorial we are going to use the official Raspberry Pi operating system, Raspbian. You can install NOOBS, but all that does is give you a choice between several operating systems.</p>
 <p>On the Raspberry Pi <a href="https://www.raspberrypi.org/downloads/raspbian/">downloads page</a> select Raspbian and choose a version to download. If you have an 8GB Micro SD card, stick with Rapsbian Jessie. If you have a much smaller Micro SD card, you might choose Raspbian Jessie Lite since it is a more bare-bones version of Raspbian and thus uses less space. <strong>This tutorial uses Raspbian Jessie 4.1</strong> so use Lite at your own caution (though you should stil be able to download packages and do most of the heavy lifting). Micro SD cards are pretty darn cheap, though, so think about purchasing a larger one if need be.</p>
 <p><strong>NOTE:</strong> A Micro SD card is the small little chip. You usually cannot connect a Micro SD directly to your computer. Most Micro SD cards, however, come with an adapter. Plug the Micro SD into the adapter and make sure the little locking mechanism is unlocked (or else you cannot write anything to the card).</p>
