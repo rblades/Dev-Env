@@ -1,0 +1,9 @@
+<p>This week is all about Dirty Data. As Seth Van Hooland writes with Open Refine, “If you only remember on thing from this lesson, it should be this: <em>all data is dirty, but you can do something about it.</em>”</p>
+<h2 id="open-refine">Open Refine</h2>
+<p>All of these tutorials we are doing either build upon each other or into each other. They are all connected and serve one another. For instance, the <a href="Unix-Bash-Regex">command line</a> tutorial shows us the importance of structuring files. Used in conjunction with Regex, we notice that working with good data is the key to less painful experiences in data mining.</p>
+<p>Open refine is a lot like Regex. Both are used to clean data for mining. Open Refine is a more visual way and much easier way to clean up data. It works well with Linked Open Data which we tackled using <a href="Zotero-SPARQL">SPARQL</a>. However, you can also use regex to clean up your open refine data.</p>
+<p>This tutorial was intuitive and open refine is easy to work with if you follow along.</p>
+<h2 id="ocr">OCR</h2>
+<p>The OCR tutorial begins by laying out the need to create a ‘python dictionary’ to handle relative data cleaning cases. Because applying one script to an entire document may clean areas with different context. We are going to use Pyton to prepare our data for Regex and other mining methods.</p>
+<p>The point of OCR is not to automate <strong>everything</strong>. We still have to be aware of our data and clean some things manually. For instance, when our script tells us it found 430 page headers, but we know there are 440 pages, we can then clean the other 10 pages.</p>
+<p>OCR reveals an important aspect of open access. Google for instance has digitized millions of books. But open access is not widely a humanities goal. As such, Google has merely made text available without taking much care of making it clean. Such is now the goal of the humanities scholar.</p>
