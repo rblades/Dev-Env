@@ -76,9 +76,9 @@
 <p>Sphinx will take a bit of time to compile. Be patient and watch ther terminal for any errors from the compiler.</p>
 <h2 id="run-ocr-convert-text-to-speech----speech-to-text">Run OCR, Convert Text to Speech --&gt; Speech to Text</h2>
 <p>To begin,</p>
-<p>To play your wav file type aplay ocr.wav</p>
-<p>pocketsphinx audio to text requires the wav file to be 16000 hertz so we will sudo apt-get install sox and then sox ocr.wav -r 16000 16000.wav which creates a wav file called 16000.wav  from ocr.wav.</p>
-<p>Next run pocketsphinx_continuous -infile 16000.wav to generate text from our wav audio file. This will run speech recognition on our wav file in the command line. It may take 5-10 minutes so sit back! Copy the output text from the command line. Open the text editor by selecting Menu &gt; Accessories &gt; Text Editor and paste the text into the editor. Save this file as convert.txt.</p>
+<p>To play your wav file type <code>aplay ocr.wav</code>.</p>
+<p>pocketsphinx audio to text requires the wav file to be 16000 hertz so we will <code>sudo apt-get install sox</code>. Once sox install, type <code>sox ocr.wav -r 16000 16000.wav</code> to create a wav file called <code>16000.wav</code>  from <code>ocr.wav</code>.</p>
+<p>Next run <code>pocketsphinx_continuous -infile 16000.wav</code> to generate text from our wav audio file. This will run speech recognition on our wav file in the command line. It may take 5-10 minutes so sit back! Copy the output text from the command line. Open the text editor by selecting <code>Menu &gt; Accessories &gt; Text Editor</code> and paste the text into the editor. Save this file as convert.txt.</p>
 <h2 id="compare-text-files">Compare Text Files</h2>
 <p>We will be using a python script to compare our two text files. Open the Pi text editor and paste in the following code:</p>
 <pre><code>from difflib import SequenceMatcher
