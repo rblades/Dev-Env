@@ -77,6 +77,8 @@
 <h2 id="run-ocr-convert-text-to-speech----speech-to-text">Run OCR, Convert Text to Speech --&gt; Speech to Text</h2>
 <p>To begin,</p>
 <p>To play your wav file type aplay ocr.wav</p>
+<p>pocketsphinx audio to text requires the wav file to be 16000 hertz so we will sudo apt-get install sox and then sox ocr.wav -r 16000 16000.wav which creates a wav file called 16000.wav  from ocr.wav.</p>
+<p>Next run pocketsphinx_continuous -infile 16000.wav to generate text from our wav audio file. This will run speech recognition on our wav file in the command line. It may take 5-10 minutes so sit back! Copy the output text from the command line. Open the text editor by selecting Menu &gt; Accessories &gt; Text Editor and paste the text into the editor. Save this file as convert.txt.</p>
 <h2 id="compare-text-files">Compare Text Files</h2>
 <p>We will be using a python script to compare our two text files. Open the Pi text editor and paste in the following code:</p>
 <pre><code>from difflib import SequenceMatcher
@@ -105,10 +107,19 @@ if weight &gt; 70:
       GPIO.output(RED_LED, True)
 </code></pre>
 <p>This code compares <code>ocr.txt</code> and <code>conversion.txt</code>. If they are 70% or more similar, flash the green LED light on the breadboard. But if they are less than 70% similar, flash the red LED light on the breadboard. Save the file as <code>ocr.py</code> in <strong>the same directory as your two text files.</strong></p>
-<p>In your terminal run <code>sudo python ocr.py</code>.</p>
-<p>Remember, to turn off your LED, run sudo python <a href="http://off.py">off.py</a></p>
-<p>pocketsphinx audio to text requires the wav file to be 16000 hertz so we will sudo apt-get install sox and then sox ocr.wav -r 16000 16000.wav which creates a wav file called 16000.wav  from ocr.wav.</p>
-<p>Next run pocketsphinx_continuous -infile 16000.wav to generate text from our wav audio file. This will run speech recognition on our wav file in the command line. It may take 5-10 minutes so sit back! Copy the output text from the command line. Open the text editor by selecting Menu &gt; Accessories &gt; Text Editor and paste the text into the editor. Save this file as convert.txt.</p>
-<p>Now with all the files in the same directory, run sudo python <a href="http://ocr.py">ocr.py</a>. You should see an LED light! Granted, the conversion is pretty dirty so it will likely be red.</p>
+<p>Now with all the files in the same directory, in your terminal run <code>sudo python ocr.py</code>. Depending on the ratio of your texts, you will see a green or red light.</p>
+<p>You will notice that the LED has stayed on. To turn off your LED, we will create another python script called <code>off.py</code></p>
+<pre><code>import RPi.GPIO as GPIO
+
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
+GREEN_LED = 18
+RED_LED = 23
+GPIO.setup(GREEN_LED, GPIO.OUT)
+GPIO.setup(RED_LED, GPIO.OUT)
+GPIO.output(GREEN_LED, False)
+GPIO.output(RED_LED, False)
+</code></pre>
+<p>Now run <code>sudo python off.py</code> to turn off the LED.</p>
 <p>Text to OCR works very well. OCR’d text to audo works well. Audio to text is horrible</p>
 <p>Done!</p>
