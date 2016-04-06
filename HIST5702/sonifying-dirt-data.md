@@ -13,6 +13,16 @@
 <li>Headphones, speakers (that can plug into standard 1/8 inch jack), or TV/monitor (with speakers)</li>
 <li>Spare cardboard box, electrical and/or technical tape, exacto knife/box cutter</li>
 </ul>
+<p>We will install the following software:</p>
+<ul>
+<li>Tesseract (Optical Character Recognition software)</li>
+<li>Alsa (Plays audio)</li>
+<li>Espeak (Speech recognition software for Text to Speech)</li>
+<li>Bison (Compiles Sphinx packages)</li>
+<li>SphinxBase (Speech recognition software for Speech to Text)</li>
+<li>PocketSphinx (Sphinx addon)</li>
+<li>Sox (Audio converter)</li>
+</ul>
 <h2 id="getting-started">Getting Started</h2>
 <p>Let’s start from scratch. If you already have your Pi running, or are using a preinstalled SD card, you can skip to the <a href="#the-screen-isnt-showing-your-pi-and-hdmi">next section</a>.</p>
 <p>For this tutorial we are going to use the official Raspberry Pi operating system, Raspbian. You can install NOOBS, but all that does is give you a choice between several operating systems.</p>
@@ -56,7 +66,7 @@
 <h2 id="configuring-sound-and-speech">Configuring Sound and Speech</h2>
 <p>Next we will want to configure our Pi’s sound output, text to speech, and then speech to text software. To begin, let’s make sure you have audio working on your Pi.</p>
 <p>The core engine of our audio is <a href="http://www.alsa-project.org/main/index.php/Main_Page">Alsa, Linux’s sound system</a>. Run <code>sudo apt-get install alsa-utils</code> to either download or update Alsa.</p>
-<p>This project converts all sound to WAV audio files, the core output of Linux’s sound utilities. But WAV files tend to be quite large and are not as standard as, say, MP3 audio files. Let’s download some conversion tools. Run <code>sudo apt-get install mpg321</code> to install MP3 tools. Then run <code>sudo apt-get install lame</code> to install WAV to MP3 conversion tools. <strong>Remember</strong> if you run into any errors downloading, first check your internet connection and then run <code>sudo reboot</code> to restart your Pi.</p>
+<p><strong>Remember</strong> if you run into any errors downloading, first check your internet connection and then run <code>sudo reboot</code> to restart your Pi.</p>
 <p>Next, load your sound drivers by running <code>sudo modprobe snd-bcm2835</code> (you can make sure the drivers have loaded by running <code>sudo lsmod | grep 2835</code>).</p>
 <p><strong>NOTE:</strong> This tutorial assumes that you want to output sound to your TV using HDMI. If you are instead using headphones or speakers plugged into your Pi, skip the following method to edit the system configuration file.</p>
 <p>Now let’s make sure your pi can output sound to your TV via the HDMI cable. Open the system configuration file with <code>sudo nano /boot/config.txt</code>. We can now edit this file within the terminal. The configuration files is simply a list of commands your Pi uses. You will notice that most of these commands have a hashtag <code>#</code> in front of them. The <code>#</code> is a commenting convention in the text file. Any line with a <code>#</code> in front of it is treated by the computer as a comment for humans to read. This allows programmers to explain code in plain English without the computer reading it. However, it also allows programmers to input actual code into a file but to make it unreadable by the machine. This allows other programmers to choose whether or not they want to use that code. We want to use a line in that code. Search for <code>hdmi_drive=2</code> and uncomment that line by removing the <code>#</code>. To save <code>config.txt</code>, hit <code>control</code> and the letter <code>o</code> together. Now to exit the configuration file and return to the main terminal view, hit <code>control</code> and the letter <code>x</code>.</p>
