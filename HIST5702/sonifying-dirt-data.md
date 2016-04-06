@@ -23,6 +23,7 @@
 <li>PocketSphinx (Sphinx addon)</li>
 <li>Sox (Audio converter)</li>
 </ul>
+<p><strong>WARNING!</strong> Make sure your Pi is completely shutdown and disconnected from power <strong>before</strong> attaching hardware components (camera, breadboard, wires, etc.).</p>
 <h2 id="getting-started">Getting Started</h2>
 <p>Let’s start from scratch. If you already have your Pi running, or are using a preinstalled SD card, you can skip to the <a href="#the-screen-isnt-showing-your-pi-and-hdmi">next section</a>.</p>
 <p>For this tutorial we are going to use the official Raspberry Pi operating system, Raspbian. You can install NOOBS, but all that does is give you a choice between several operating systems.</p>
