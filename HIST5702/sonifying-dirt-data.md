@@ -40,8 +40,8 @@
 <p>Let’s start from scratch. If you already have your Pi running, or are using a preinstalled SD card, you can skip to the <a href="#131-the-screen-isnt-showing-your-pi-and-hdmi">section 1.3.1</a>.</p>
 <p>For this tutorial we are going to use the official Raspberry Pi operating system, Raspbian. You can install NOOBS, but all that does is give you a choice between several operating systems.</p>
 <p>On the Raspberry Pi <a href="https://www.raspberrypi.org/downloads/raspbian/">downloads page</a> select Raspbian and choose a version to download. If you have an 8GB Micro SD card, stick with Rapsbian Jessie. If you have a much smaller Micro SD card, you might choose Raspbian Jessie Lite since it is a more bare-bones version of Raspbian and thus uses less space. <strong>This tutorial uses Raspbian Jessie 4.1</strong> so use Lite at your own caution (though you should still be able to download packages and do most of the heavy lifting). Micro SD cards are relatively cheap, though, so think about purchasing a larger one if need be.</p>
-<p><strong>NOTE</strong>: A Micro SD card is the small little chip. You usually cannot connect a Micro SD directly to your computer. Most Micro SD cards, however, come with an adapter. Plug the Micro SD into the adapter and make sure the little locking mechanism is unlocked (or else you cannot write anything to the card).</p>
-<p>Once your image has downloaded, insert your Micro SD card in the adapter to your computer, and follow Raspberry Pi’s <a href="https://www.raspberrypi.org/documentation/installation/installing-images/">documentation on how to mount the image to your Micro SD card</a>. Each platform has its own method. Remember to safely eject the card.</p>
+<p><strong>NOTE</strong>: A Micro SD card is a small little chip. You usually cannot connect a Micro SD directly to your computer. Most Micro SD cards, however, come with an adapter. Plug the Micro SD into the adapter and make sure the little locking mechanism is unlocked (or else you cannot write anything to the card).</p>
+<p>Once your image has downloaded, insert your Micro SD card in the adapter to your computer, and follow Raspberry Pi’s <a href="https://www.raspberrypi.org/documentation/installation/installing-images/">documentation on how to mount the image to your Micro SD card</a>. Each platform has its own method. Remember to safely eject the card from your computer.</p>
 <h3 id="the-screen-isnt-showing-your-pi-and-hdmi">1.3.1 The Screen isn’t Showing! Your Pi and HDMI</h3>
 <p>I am devoting an entire sub-section to connecting your Pi to a monitor via and HDMI cable because <strong>this can be the most annoying first step for any Pi beginner.</strong></p>
 <p>Before plugging your Pi into the power, plug in your Micro SD card - the gold stripes should face the Pi and you will hear a click, locking the Micro SD card in place.</p>
@@ -110,7 +110,7 @@
 </ul>
 <p>Check <code>ocr.jpg</code> to make sure it is stable, clear, and contains only your document. Otherwise, Tesseract will fail to produce a text file from the image.</p>
 <p>To convert the image to a text file, run <code>tesseract ocr.jpg ocr.txt</code> in the terminal.</p>
-<p>Check <code>ocr.txt</code>. The quality of your OCR’d image depends on lighting, stability, and the text itself.</p>
+<p>Check <code>ocr.txt</code>. The quality of your OCRd image depends on lighting, stability, and the text itself.</p>
 <p>We will be using a <code>.wav</code> audio file for this tutorial. To convert <code>ocr.txt</code> to an audio file called <code>ocr.wav</code>, run <code>espeak -f ocr.txt --stdout &gt; ocr.wav</code>.</p>
 <p>To play your wav file, type <code>aplay ocr.wav</code>.</p>
 <p>We will now convert this wav file back into a text file called <code>conversion.txt</code> using PocketSphinx.</p>
@@ -121,8 +121,10 @@
 <p>You should now have the original <code>ocr.txt</code> and <code>conversion.txt</code> in the same directory. We will now compare these two files.</p>
 <h2 id="connect-the-breadboard">1.8 Connect the Breadboard</h2>
 <p>To connect the breadboard, power off your Pi and place everything on a flat, clear surface. Connect the female end of the breakout ribbon to your Pi’s pins. Be careful but give it a bit of force.</p>
-<p>Connect the cobbler to your breadboard. Connect the male end of the ribbon from your Pi to the female end of the cobbler in the breadboard.</p>
-<p>The breadboard is labelled with numbers and letters and postive and negative inputs.</p>
+<p>Connect the cobbler to your breadboard. Connect the male end of the ribbon from your Pi to the female end of the cobbler in the breadboard. The breadboard is labelled with numbers and letters and postive and negative inputs. Connect the cobbler to the top of the breadboard. The right most pins should be inserted into <code>F</code>.</p>
+<p>Use the following image from Adafruit to connect the remaining components. The script in <a href="19-compare-text-files">section 1.9</a> will only work if the Green LED is connected to <code>18</code> on the cobbler and the Red LED is connected to <code>23</code> on the cobbler.</p>
+<p><strong>NOTE</strong>: The negative leg of the LED is always the shortest! It must be connected to the negative input (the blue line on the furthest side.</p>
+<p><img src="https://learn.adafruit.com/system/assets/assets/000/024/094/original/raspberry_pi_email_blinkies_bb.png?1427489683" alt="enter image description here"></p>
 <h2 id="compare-text-files">1.9 Compare Text Files</h2>
 <p>We will be using a python script to compare our two text files and visually show us the ratio of similarity between the original file and the translated file. Open the Pi text editor and paste in the following code:</p>
 <pre><code>from difflib import SequenceMatcher
@@ -150,6 +152,7 @@ if weight &gt; 70:
       GPIO.output(GREEN_LED, False)
       GPIO.output(RED_LED, True)
 </code></pre>
+<p><strong>NOTE</strong>: Python reads each line’s indentation. Make sure you have retained the structure of the above code.</p>
 <p>Save the file as <code>ocr.py</code> in <strong>the same directory as your two text files.</strong> This code compares <code>ocr.txt</code> and <code>conversion.txt</code>. If they are 70% or more similar, flash the green LED light on the breadboard. But if they are less than 70% similar, flash the red LED light on the breadboard. If you want to use a different ratio of similarity, go to line 19 and change the <code>70</code> in <code>if weight &gt; 70</code>.</p>
 <p>Now with all the files in the same directory, in the terminal run <code>sudo python ocr.py</code>. Depending on the ratio of your texts, you will see a green or red light.</p>
 <p>You will notice that the LED has stayed on. To turn off your LED, we will create another python script called <code>off.py</code></p>
@@ -168,4 +171,3 @@ GPIO.output(RED_LED, False)
 <p>Done!</p>
 <h2 id="takeaways">1.10 Takeaways</h2>
 <p>When I began the process of translating my original text, I imagined the text to speech software would fail because of bad OCR. I was surprised. Tesseract OCRd my paper beautifully with few errors. The text to speech operation produced an equally sound audio file with a near perfect reading of the OCRd text file and the original paper. However, when the audio was converted back into a text file, the result was a garbled mess of text.</p>
-<p>The translation</p>
