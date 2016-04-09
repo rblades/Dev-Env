@@ -12,6 +12,12 @@
 <li>HDMI cable (<strong>NOT</strong> a <a href="https://en.wikipedia.org/wiki/VGA_connector">VGA cable since these do not output sound or connect to the Pi</a>)</li>
 <li>Headphones, speakers (that can plug into standard 1/8 inch jack), or TV/monitor (with speakers)</li>
 <li>Spare cardboard box, electrical and/or technical tape, exacto knife/box cutter</li>
+<li>2 330 ohm resistors</li>
+<li>2 LED Lights (1 red, 1 green)</li>
+<li>2 male to male jumper cables</li>
+<li>1 breadboard</li>
+<li>1 breakout cobbler (depending on your model, you can use a T-cobbler)</li>
+<li>1 breakout ribbon</li>
 </ul>
 <p>We will install the following software:</p>
 <ul>
@@ -24,6 +30,12 @@
 <li>Sox (Audio converter)</li>
 </ul>
 <p><strong>WARNING!</strong> Make sure your Pi is completely shutdown and disconnected from power <strong>before</strong> attaching hardware components (camera, breadboard, wires, etc.).</p>
+<h2 id="important-note-on-hardware">Important Note on Hardware</h2>
+<p>For this tutorial, I used a Raspberry Pi 2 Model B. My Pi has a 40-pin breakout. Therefore, I used a 40 pin breakout ribbon and cobbler. Older Pi models use 26 pin breakouts. Check your model and hardware requirements.</p>
+<p>This tutorial assumes you are using a breakout ribbon and cobbler. <strong>Be careful connecting pins and breakout components to your Pi and the breadboard</strong>. However, do not be afraid to use a bit of force to connect the components. All pins must be fully inserted into their relevant components.</p>
+<p>However, a breakout is not a requirement to create a functioning LED breadboard. You can instead use female to male jumper cables: the female end connects to the Pi breakout and the male end connects to the breadboard. <a href="https://projects.drogon.net/raspberry-pi/gpio-examples/tux-crossing/gpio-examples-1-a-single-led/">This tutorial</a> shows how to connect your Pi to the breadboard using only jumper cables. In this case you will need 2 female to male cables rather than two male to male cables.</p>
+<p><strong>If you use different hardware your requirements WILL be different from mine</strong>.</p>
+<p><strong>CAUTION: You need 2 330 ohm resistors for this project</strong>. The resistors ‘resist’ or regulate the current to the LEDs so that they do not short.</p>
 <h2 id="getting-started">Getting Started</h2>
 <p>Let’s start from scratch. If you already have your Pi running, or are using a preinstalled SD card, you can skip to the <a href="#the-screen-isnt-showing-your-pi-and-hdmi">next section</a>.</p>
 <p>For this tutorial we are going to use the official Raspberry Pi operating system, Raspbian. You can install NOOBS, but all that does is give you a choice between several operating systems.</p>
