@@ -39,7 +39,7 @@
 <p><strong>NOTE:</strong> If you see nothing and you followed the set-up, you may have to change some code in the <code>config.txt</code> file. See Raspberry Pi’s documentation for <a href="https://www.raspberrypi.org/documentation/configuration/config-txt.md">more information on</a> <code>config.txt</code>.</p>
 <p>You should now see your Pi’s desktop. Make sure you have a mouse and keyboard plugged into your Pi. Explore around a bit. You can play games, use some interesting tools, etc.</p>
 <p>Lastly, make sure to connect to the internet. If you have purchased a Wifi dongle with your Pi (it looks like a little USB stick), plug that into your Pi. To connect to Wifi, select the network symbol in the top right of the screen. Select your Wifi network and enter your password.</p>
-<p>Otherwise, connect your Pi directly to one of your router’s (usually 4) ethernet ports with your ethernet cable.</p>
+<p>Otherwise, connect your Pi directly to one of your router’s ethernet ports (I use port number 4) with your ethernet cable.</p>
 <h2 id="update-your-pi">Update your Pi</h2>
 <p>Now that your Pi is up and running, open your Pi’s terminal (command line).</p>
 <p><strong>NOTE:</strong> You can also run your Pi directly from your own computer using a secure shell or SSH. This is a very simple method to run your Pi from your own computer’s command line. See Raspberry Pi’s <a href="https://www.raspberrypi.org/documentation/remote-access/ssh/">documentation on SSH</a>. This is purely preference. SSH-ing is pretty darn cool and can help if you don’t want cords running every which way out of your Pi. I prefer using the Pi’s terminal.</p>
@@ -53,14 +53,14 @@
 <p>Therefore, you will want to keep your Pi clean and lean. Once your packages have upgraded successfully, run <code>sudo apt-get clean</code> to dump your apt-get cache. <strong>Be Aware</strong> that this method dumps any memory from your <code>apt-get</code> folder. You may have other downloaded items. So be sure that you are willing to dump this information and that you are not currently trying to install or download anything else using <code>sudo apt-get install</code>.</p>
 <h2 id="configure-the-camera">Configure the Camera</h2>
 <p>To install the camera into your Pi, <a href="https://www.raspberrypi.org/help/camera-module-setup/">follow Raspberry Pi’s instructional video</a>.</p>
-<p><strong>NOTE:</strong> Be careful touching any Pi components. If you have built up static electricity, you can short the electronics and ruin your Pi. The easy solution is to touch a non-coated pure metal to ground yourself. While it is not hugely likely you will short your Pi, especially if you are not directly touching components, it is safe practice to ground yourself. <strong>Remember</strong> you accept full responsibility if you have to replace parts.</p>
+<p><strong>NOTE:</strong> Be careful touching any Pi components. If you have built up static electricity, you can short the electronics and ruin your Pi. The easy solution is to touch a non-coated pure metal to ground yourself. While it is not hugely likely you will short your Pi, especially if you are not directly touching circuit components, it is safe practice to ground yourself. <strong>The choice comes down to this</strong>: you accept full responsibility if you have to replace parts.</p>
 <p>To configure your camera, run <code>sudo raspi-config</code>. Using your up and down keys, scroll down to <code>Enable Camera</code> and hit enter to turn the camera on. This is also a good time to expand your SD card partition. This is optional, but it allows you to use the entire SD card to store your files. If you do not expand your partition, you may run into problems installing programs in the future. To do this, within <code>raspi config</code> scroll to <code>Expand Filesystem</code> and hit enter to partition the card. See Raspberry Pi’s <a href="https://www.raspberrypi.org/documentation/configuration/raspi-config.md">official documentation</a> for more options on configuring your Pi (for instance, you may want to overclock your Pi to get the most power out of it).</p>
 <p>Now scroll down to the bottom with your down key, hit the right side key, and then hit enter to finish to configuration. Your Pi will now reboot.</p>
 <p>To test if you Pi camera is working, open the terminal again and type <code>raspistill -v -o test.jpg</code>. This turns the camera on, captures the image, and saves it with the specified name (i.e. in the above example, it saves it as <code>test.jpg</code>). The camera will turn on and <strong>after 5 seconds</strong> will capture an image. This gives you enough time to focus the camera on your subject.</p>
 <p>Keep an eye on your working directory in the terminal. Unless you have used the <code>cd</code> method to change directories to this point, you should still be in the main directory. you can always type <code>ls</code> into the terminal to view a list of the current directory’s files. On your desktop, navigate to the main directory with you Downloads, Desktop, Music, Pictures, etc. folders. You will see <code>test.jpg</code>. Double click it to view your new photo.</p>
 <h3 id="download-the-ocr-engine">Download the OCR Engine</h3>
 <p>Now that we can take photos, we will download the OCR technology to convert our photos of text to actual text files. We will be using <a href="https://github.com/tesseract-ocr/tesseract">Tesseract</a>, a free open source OCR engine sponsored by Google.</p>
-<p>In the terminal type <code>sudo apt-get install tesseract-ocr</code>.  This will install Tesseract to your Pi, allowing you to run the program from your terminal.</p>
+<p>In the terminal type <code>sudo apt-get install tesseract-ocr</code>.  This will install Tesseract to your Pi, allowing you to run the program from the terminal.</p>
 <p>At this point, we will not attempt to take a photo of a document and convert it to a text file using Tesseract. It is very difficult to center and focus the camera on your paper document without some contraption to help you. We will build a simple holder at the end of this lesson.</p>
 <p>If you would like to try it out or you have already built a case for you Pi camera, capture an image using <code>raspistill -v -o ocr.jpg</code> and then run <code>tesseract ocr.jpg ocr.txt</code> to convert the image to an OCRd text file. <strong>Remember</strong> that when running a command on a file in the terminal, you must to either run that command in the same directory as the file, or specify the path to the file. For example, if I run <code>raspistill -v -o ocr.jpg</code> in the <code>Pictures</code> directory, but attempt to use Tesseract in the <code>Desktop</code> directory, I will have to run <code>tesseract ~/Pictures/ocr.jpg ocr.txt</code>. This will convert <code>ocr.jpg</code> found in the <code>Pictures</code> directory and output the <code>ocr.txt</code> file to the <code>Desktop</code> directory.</p>
 <p><strong>NOTE:</strong> Converting images to text files using Tesseract takes time since your Pi does not have nearly as much processing power as a laptop or desktop computer.</p>
@@ -77,7 +77,7 @@
 <p>Now let’s install <a href="http://espeak.sourceforge.net/">Espeak, a speech synthesizer</a> we will use for our text to speech method. In the terminal, run <code>sudo apt-get install espeak</code>. Once it has installed, run <code>espeak "Initialize espeak! Hello, it's me. I was wondering if after all these years you'd like espeak"</code> to test espeak.</p>
 <h3 id="configure-speech-to-text">Configure Speech to Text</h3>
 <p>Lastly, we want to install a program to convert our computer-spoken audio file back into a text file. For this tutorial, we will be using <a href="http://cmusphinx.sourceforge.net/wiki/">PocketSphinx</a> since we can run it on our Pi offline. See <a href="https://raspberrypi.stackexchange.com/questions/10384/speech-processing-on-the-raspberry-pi/10392">this StackOverflow thread</a> on other great options for your Pi.</p>
-<p>We will have to install the Sphinx base in order to get Pocket Sphinx to work. To begin, open your terminal and download both Sphinx <code>wget http://sourceforge.net/projects/cmusphinx/files/sphinxbase/0.8/sphinxbase-0.8.tar.gz</code> and then PocketSphinx <code>wget http://sourceforge.net/projects/cmusphinx/files/pocketsphinx/0.8/pocketsphinx-0.8.tar.gz</code>.</p>
+<p>We will have to install the Sphinx base in order to get Pocket Sphinx to work. To begin, open the terminal and download both Sphinx <code>wget http://sourceforge.net/projects/cmusphinx/files/sphinxbase/0.8/sphinxbase-0.8.tar.gz</code> and then PocketSphinx <code>wget http://sourceforge.net/projects/cmusphinx/files/pocketsphinx/0.8/pocketsphinx-0.8.tar.gz</code>.</p>
 <p>Now extract Sphinx <code>tar -zxvf pocketsphinx-0.8.tar.gz</code> and then PocketSphinx <code>tar -zxvf sphinxbase-0.8.tar.gz</code>. Once you have successfully extracted these files, you can remove the two downloads by running <code>sudo rm -rf pocketsphinx-0.8.tar.gz</code> and then <code>sudo rm -rf sphinxbase-0.8.tar.gz</code>.</p>
 <p>We need <a href="https://en.wikipedia.org/wiki/GNU_bison">Bison</a> to compile the Sphinx packages. Install Bison by running <code>sudo apt-get install bison libasound2-dev</code> in the terminal.</p>
 <p>Once Bison has successfully installed, change directories to the extracted files. To check what they are called exactly, type <code>ls</code> into the terminal to show the contents of your main directory. They should be called <code>sphinxbase-0.8</code> and <code>pocketsphinx-0.8</code>.</p>
@@ -86,12 +86,29 @@
 <code>./configure --enable-fixed</code>, <code>sudo make</code>, and then <code>sudo make install</code>.</p>
 <p>Sphinx will take a bit of time to compile. Be patient and watch ther terminal for any errors from the compiler.</p>
 <h2 id="run-ocr-convert-text-to-speech----speech-to-text">Run OCR, Convert Text to Speech --&gt; Speech to Text</h2>
-<p>To begin,</p>
-<p>To play your wav file type <code>aplay ocr.wav</code>.</p>
-<p>pocketsphinx audio to text requires the wav file to be 16000 hertz so we will <code>sudo apt-get install sox</code>. Once sox install, type <code>sox ocr.wav -r 16000 16000.wav</code> to create a wav file called <code>16000.wav</code>  from <code>ocr.wav</code>.</p>
-<p>Next run <code>pocketsphinx_continuous -infile 16000.wav</code> to generate text from our wav audio file. This will run speech recognition on our wav file in the command line. It may take 5-10 minutes so sit back! Copy the output text from the command line. Open the text editor by selecting <code>Menu &gt; Accessories &gt; Text Editor</code> and paste the text into the editor. Save this file as convert.txt.</p>
+<p>To begin, navigate to the directory you want to be working in. I worked in my home directory. If you want to create a directory, open the terminal and type <code>mkdir OCR_Project</code>. Then navigate to the directory by typing <code>cd OCR_Project</code>. When doing anything in this project, <strong>make sure all of your files are contained in this directory.</strong></p>
+<p>Make sure you have something to stabilize your camera module. My cardboard box contraption worked fine. I photographed a paper ethics clearance form I had on my desk.</p>
+<p>To take a photo called <code>ocr.jpg</code> type <code>raspistill -v -o ocr.jpg</code> into the terminal.</p>
+<p><strong>Photograph tips</strong>:</p>
+<ul>
+<li>Make sure you only photograph your document and not anything in the background</li>
+<li>Tesseract will not work if your image file is blurry or contains anything other than the document</li>
+<li>Make sure you have a decent amount of light</li>
+<li>Be patient! I took a dozen photographs before I got a functioning image ot OCR.</li>
+</ul>
+<p>Check <code>ocr.jpg</code> to make sure it is stable, clear, and contains only your document. Otherwise, Tesseract will fail to produce a text file from the image.</p>
+<p>To convert the image to a text file, run <code>tesseract ocr.jpg ocr.txt</code> in the terminal.</p>
+<p>Check <code>ocr.txt</code>. The quality of your OCR’d image depends on lighting, stability, and the text itself.</p>
+<p>We will be using a <code>.wav</code> audio file for this tutorial. To convert <code>ocr.txt</code> to an audio file called <code>ocr.wav</code>, run <code>espeak -f ocr.txt --stdout &gt; ocr.wav</code>.</p>
+<p>To play your wav file, type <code>aplay ocr.wav</code>.</p>
+<p>We will now convert this wav file back into a text file called <code>conversion.txt</code> using PocketSphinx.</p>
+<p>Pocketsphinx audio to text requires your wav file to be 16000 hertz. We will use the software Sox to convert our file to the correct frequency. In the terminal, run <code>sudo apt-get install sox</code>. Once you have installed Sox, type <code>sox ocr.wav -r 16000 16000.wav</code> to create a wav file called <code>16000.wav</code> from <code>ocr.wav</code>.</p>
+<p>To play the new frequency wav file, type <code>aplay 16000.wav</code>.</p>
+<p>We will now convert <code>16000.wav</code> to a text file called <code>conversion.txt</code>. In the terminal, run <code>pocketsphinx_continuous -infile 16000.wav</code>. This will run speech recognition on our wav file in the command line. It may take 5-10 minutes so sit back!</p>
+<p>Towards the end of the terminal process, PocketSphinx will output a body of text. This is the converted text from <code>16000.wav</code>. Copy the output text from the command line. Open the text editor by selecting <code>Menu &gt; Accessories &gt; Text Editor</code> and paste the text into the editor. Save this file as <code>conversion.txt</code>.</p>
+<p>You should now have the original <code>ocr.txt</code> and <code>conversion.txt</code> in the same directory. We will now compare these two files.</p>
 <h2 id="compare-text-files">Compare Text Files</h2>
-<p>We will be using a python script to compare our two text files. Open the Pi text editor and paste in the following code:</p>
+<p>We will be using a python script to compare our two text files and visually show us the ratio of similarity between the original file and the translated file. Open the Pi text editor and paste in the following code:</p>
 <pre><code>from difflib import SequenceMatcher
 
 import RPi.GPIO as GPIO
@@ -117,8 +134,8 @@ if weight &gt; 70:
       GPIO.output(GREEN_LED, False)
       GPIO.output(RED_LED, True)
 </code></pre>
-<p>This code compares <code>ocr.txt</code> and <code>conversion.txt</code>. If they are 70% or more similar, flash the green LED light on the breadboard. But if they are less than 70% similar, flash the red LED light on the breadboard. Save the file as <code>ocr.py</code> in <strong>the same directory as your two text files.</strong></p>
-<p>Now with all the files in the same directory, in your terminal run <code>sudo python ocr.py</code>. Depending on the ratio of your texts, you will see a green or red light.</p>
+<p>Save the file as <code>ocr.py</code> in <strong>the same directory as your two text files.</strong> This code compares <code>ocr.txt</code> and <code>conversion.txt</code>. If they are 70% or more similar, flash the green LED light on the breadboard. But if they are less than 70% similar, flash the red LED light on the breadboard. If you want to use a different ratio of similarity, go to line 19 and change the <code>70</code> in <code>if weight &gt; 70</code>.</p>
+<p>Now with all the files in the same directory, in the terminal run <code>sudo python ocr.py</code>. Depending on the ratio of your texts, you will see a green or red light.</p>
 <p>You will notice that the LED has stayed on. To turn off your LED, we will create another python script called <code>off.py</code></p>
 <pre><code>import RPi.GPIO as GPIO
 
@@ -132,5 +149,7 @@ GPIO.output(GREEN_LED, False)
 GPIO.output(RED_LED, False)
 </code></pre>
 <p>Now run <code>sudo python off.py</code> to turn off the LED.</p>
-<p>Text to OCR works very well. OCR’d text to audo works well. Audio to text is horrible</p>
 <p>Done!</p>
+<h2 id="takeaways">Takeaways</h2>
+<p>When I began the process of translating my original text, I imagined the text to speech software would fail because of bad OCR. I was surprised. Tesseract OCRd my paper beautifully with few errors. The text to speech operation produced an equally sound audio file with a near perfect reading of the OCRd text file and the original paper. However, when the audio was converted back into a text file, the result was a garbled mess of text.</p>
+<p>The translation</p>
