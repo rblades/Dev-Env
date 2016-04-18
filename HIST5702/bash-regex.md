@@ -1,0 +1,11 @@
+<h2 id="unix">Unix</h2>
+<p>The command line was used to access a computer before the development of Graphical User Interfaces (GUIs). Harkens back to low processing power and lack of a GUI. if you use an old machine, it can take over most of the commands.</p>
+<p>So why use the command line at all anymore?</p>
+<p>Not only do you learn more about your machine, but you begin to master an integral way to access files. You’ll have noticed that with the cat command, you see the beginning of regex. In the next lesson, Milligan and Baker go over this more and show what commands like grep and wc can do. We are building towards more powerful regex</p>
+<p>“The primary reason is the seamless experience of working on the command line: you never have to pick up your mouse or touch your track pad, and, although it has a steep learning curve it can eventually become a sole writing environment.”</p>
+<p>Vim is a fork of Vi, an editor for the Unix command line. But vim is difficult to understand. Using the command line is a personal choice. But you should set your machine to work for you. The point of these tutorials is that you can tap the potential of the command line and even use it to do anything on the computer.</p>
+<p>You should also read this: <a href="http://programminghistorian.org/lessons/preserving-your-research-data">http://programminghistorian.org/lessons/preserving-your-research-data</a> suggested by the mining research data article. Mining data, searching, etc. will help you immensely. Meta-data is so important</p>
+<h2 id="regex">Regex</h2>
+<p>Regular expression tutorial makes an important point. This is not about becoming a programmer. Programming takes years to master and you might find it interesting but don’t exactly want to get into it. There is a lot of stuff going on in life. That’s what these tutorial do - help you modify your workflow and use modern tools and methods to increase productivity.</p>
+<p>You have to know your text at some level to know what to change. Larger files will be more difficult to clean up, more consistent files will be easier, bad OCR will lead to poor results if not cleaned.</p>
+<p>In the end, your platform effects what you can do and what you type: I prefer text wrangler to handle regex. Having data in XML is so helpful because you have a structured file to apply practically anywhere.</p>
